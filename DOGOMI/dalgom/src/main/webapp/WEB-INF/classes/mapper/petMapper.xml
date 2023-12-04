@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitstudy.app.dao.petMapper">
+    <!--  펫 정보 불러오기  -->
+    <select id="pet_select" parameterType="int" resultType="PetDto">
+        select * from pet
+        where user_no = #{user_no}
+    </select>
+
+    <!--  펫 정보 1개 추가하기  -->
+    <insert id="pet_input" parameterType="PetDto">
+        insert into pet (user_no, p_name, p_birth, p_size, p_weight, p_vaccine, p_kind, p_gender, p_blood)
+        values (#{user_no}, #{p_name}, #{p_birth}, #{p_size}, #{p_weight}, #{p_vaccine}, #{p_kind}, #{p_gender}, #{p_blood})
+    </insert>
+
+
+    <!--  펫 마이페이지 map으로 modify,,  -->
+    <update id="pet_modify_map" parameterType="map">
+        update pet
+        set p_name = #{p_name},
+<!--            p_birth = #{p_birth},-->
+            p_size = #{p_size},
+            p_weight = #{p_weight},
+            p_vaccine = #{p_vaccine},
+            p_kind = #{p_kind},
+            p_gender = #{p_gender},
+            p_blood = #{p_blood}
+        where user_no = #{user_no} and p_no = #{p_no}
+    </update>
+
+    <!--  펫 정보 전체 삭제  -->
+    <delete id="pet_drop_all" parameterType="int">
+        delete from pet
+        where user_no = #{user_no}
+    </delete>
+
+    <!--  펫 정보 하나만 삭제  -->
+    <delete id="pet_drop" parameterType="int">
+        delete from pet
+        where p_no = #{p_no}
+    </delete>
+</mapper>
+
+

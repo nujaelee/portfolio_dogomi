@@ -1,0 +1,265 @@
+#wrap {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.contain {
+    /*min-width: 335px;*/
+    /*width: 20%;*/
+    /*background-color: #FAF2E1;*/
+    /*overflow: hidden;*/
+    /*padding: 13px;*/
+    /*margin: auto;*/
+    /*font-size: 13px;*/
+    /*border: 1px solid #EDC886;*/
+
+    width: 22%;
+    min-width: 400px;
+    min-height: 500px;
+    background-color: #FAF2E1;
+    overflow: hidden;
+    padding: 13px;
+    margin: auto;
+    font-size: 13px;
+    border: 1px solid #EDC886;
+    border-radius: 10px;
+}
+.login_logo_head {
+    width: 100%;
+    padding: 30px 0 30px 0;
+    box-sizing: border-box;
+    background-color: #FAF2E1;
+}
+.login_logo {
+    width: 100%;
+    height: 90px;
+    text-align: center;
+    line-height: 90px;
+    background-color: #FAF2E1;
+}
+.login_box {
+    width: 100%;
+    /* background-color: #FAF2E1; */
+    background-color: #FFF;
+    overflow: hidden;
+    border-left: 1px solid #EDC886;
+    border-right: 1px solid #EDC886;
+    border-bottom: 1px solid #EDC886;
+    box-sizing: border-box;
+}
+.login_tab {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+}
+.loginCk {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+.user_btn {
+    width: 50%;
+    font-size: 16px;
+    padding: 20px 0 20px 0;
+    background-color: #FFF;
+    border: none;
+    box-sizing: border-box;
+    /* font-weight: 700; */
+}
+.tc_btn {
+    width: 50%;
+    font-size: 16px;
+    padding: 20px 0 20px 0;
+    background-color: #FFF;
+    box-sizing: border-box;
+    border: none;
+}
+.input_box {
+    width: 100%;
+    margin: 20px 0 10px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    /* background: #FAF2E1; */
+    background: #FFF;
+    padding: 10px;
+}
+.id {
+    /* width: 280px; */
+    width: 65%;
+    margin-bottom: 10px;
+    height: 40px;
+    display: block;
+    padding-left: 15px;
+    /* border: none; */
+}
+.pw {
+    /* width: 280px; */
+    width: 65%;
+    height: 40px;
+    display: block;
+    padding-left: 15px;
+    /* border: none; */
+}
+.id, .pw {
+    /* border: 1px solid gainsboro; */
+    border: 1px solid #EDC886;
+    border-radius: 5px;
+    outline: none;
+}
+.login_btn {
+    /* width: 100px; */
+    width: 23%;
+    /* height: 90px; */
+    height: 78%;
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFF;
+    background-color: #EDC886;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+.line { padding: 0 10px; }
+.login_link {
+    /* width: 50%; */
+    margin-top: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+.login_link > a {
+    color: #000;
+    text-decoration: none;
+}
+.login_link > li > a { padding: 0; }
+.sign_box {
+    width: 100%;
+    /*height: 160px;*/
+    height: 40%;
+    overflow: hidden;
+    margin-top: 50px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 16px;
+}
+.sign_box > a {
+    display: block;
+    width: 50%;
+    height: 100%;
+    /* height: 220px; */
+    float: left;
+    box-sizing: border-box;
+    /* background-color: violet; */
+}
+.userSign { 
+    text-decoration: none;
+    color: #000;
+}
+.tcSign {
+    text-decoration: none;
+    color: #000;
+}
+.userSignImg {
+    width: 100%;
+    height: 75%;
+    position: relative;
+    border: 1px solid gainsboro;
+    border-bottom: none;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 10px 0 0 0;
+}
+.userSignImg > img {
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.userSignTxt {
+    /* font-size: 13px; */
+    height: 25%;
+    line-height: 55px;
+    text-align: center;
+    background-color: #EDC886;
+}
+.tcSignImg {
+    width: 100%;
+    height: 75%;
+    position: relative;
+    border: 1px solid gainsboro;
+    border-bottom: none;
+    border-left: none;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 0 10px 0 0;
+}
+.tcSignImg > img {
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.tcSignTxt {
+    /* font-size: 13px; */
+    height: 25%;
+    line-height: 55px;
+    text-align: center;
+    background-color: #277942;
+}
+/* .user_btn.clicked {
+    background-color: #FAF2E1;
+    font-weight: 700;
+}
+
+.tc_btn.clicked {
+    background-color: #FAF2E1;
+    font-weight: 700;
+} */
+
+.clicked {
+    background-color: #FFF;
+    border-left: 1px solid #EDC886;
+    border-top: 1px solid #EDC886;
+    border-right: 1px solid #EDC886;
+    border-radius: 10px 10px 0 0;
+    font-weight: 700;
+}
+
+.unclicked {
+    background-color: #FAF2E1;
+    border-bottom: 1px solid #EDC886;
+    border-radius: 10px 10px 0 0;
+    font-weight: 700;
+}
+/* .user_click {
+    background-color: #EDC886;
+    color: #FFF;
+}
+.tc_click {
+    background-color: #277942;
+    color: #FFF;
+} */
+.block {
+    display: block;
+}
+.none {
+    display: none;
+}
+#u_login_btn{
+    background-color: #EDC886;   
+}
+#t_login_btn {
+    background-color: #277942;
+}

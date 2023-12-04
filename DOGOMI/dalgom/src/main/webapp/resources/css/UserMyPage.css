@@ -1,0 +1,247 @@
+/*body {margin: 0;}
+a{
+    width: 100%;
+    height: 100%;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a { 
+    text-decoration: none;
+    color: inherit;
+}*/
+#wrap{
+    width: 100%;
+    user-select: none;
+}
+.banner{
+    width: 100%;
+    height: 200px;
+    background-color: #EDC886;
+    /* background-image: url(banner_back.png); */
+    background-size: cover;
+}
+.banner_txt_box{
+    margin: 0 auto;
+    width: 70%;
+    height: 150px;
+    line-height: 60px;
+    padding: 20px;
+    box-sizing: border-box;
+    line-height: 110px;
+}
+.user_id{
+    float: left;
+    font-size: 30px;
+    margin-top: 20px;
+}
+.mypage_txt{
+    float: left;
+    margin-top: 30px;
+    font-size: 16px;
+}
+.logout_btn{
+    float: right;
+    margin-right: 20px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.main{
+    margin-top: -50px;
+}
+.main_nav{
+    width: 80%;
+    height: 100px;
+    position: relative;
+    left: 10%;
+    background-color: #FAF2E1;
+    border-radius: 20px;
+    box-shadow: 0 1px 0 1px #00000027;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    line-height: 60px;
+}
+.main_nav ul{
+    display: flex;
+    justify-content: space-around;
+}
+.main_nav li{
+    cursor: pointer;
+}
+.content{
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+/* 내 정보 */
+.my_info{
+    margin: 0 auto;
+    width: 100%;
+}
+.info_title{
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    font-size: 35px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid gainsboro;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.info_title{
+    margin: 0 auto;
+    width: 70%;
+    font-size: 20px;
+    padding: 10px;
+}
+.pet_plus, .pet_drop{
+    width: 15%;
+    float: right;
+}
+.pet_title{
+    margin-top: 30px;
+    display: inline-block;
+    margin-left: 14%;
+}
+.info_table{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.txt_title{
+    width: 30%;
+    height: 40px;
+    border-top: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    box-sizing: border-box;
+    line-height: 40px;
+    padding-left: 20px;
+    margin-left: 5%;
+    background-color: rgb(240, 238, 238);
+}
+/*.id_txt, .name_txt{*/
+/*    border-top: 1px solid;*/
+/*}*/
+/*.joindate_txt, .vaccin_txt{*/
+/*    border-bottom: 1px solid;*/
+/*}*/
+.input_box{
+    width: calc(60%);
+    height: 40px;
+    border-top: 1px solid gainsboro;
+    box-sizing: border-box;
+}
+
+.info_table input{
+    padding: 0;
+    width: 80%;
+    line-height: 20px;
+    margin-top: 7.5px;
+    margin-left: 20px;
+}
+/*.info_table input:first-of-type{*/
+/*    border-top: 1px solid;*/
+/*}*/
+/*.info_table input:last-of-type{*/
+/*    border-bottom: 1px solid;*/
+/*}*/
+.info_btn{
+    margin: 0 auto;
+    width: 80%;
+    height: 50px;
+    text-align: center;
+}
+
+.jjim_list, .user_community_list, .user_review_list{
+    margin: 0 auto;
+    width: 100%;
+}
+.jjim_title, .community_title, .review_title{
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    font-size: 35px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid gainsboro;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.jjim_table, .community_table, .review_table{
+    margin: 0 auto;
+    width: 80%;
+    line-height: 40px;
+    border-collapse: collapse;
+    border-top: 1px solid;
+    text-align: center;
+}
+/*.jjim_table, .community_table{
+ padding-bottom: 100px;
+}*/
+
+thead{
+    background-color: rgb(240, 238, 238);
+}
+th, td{
+    border-bottom: 1px solid;
+}
+
+.community_table .cu_no{
+    width: 5%;
+}
+.community_table .cu_title{
+    width: 60%;
+}
+.community_table .cu_writer{
+    width: 15%;
+}
+.community_table .cu_regdate{
+    width: 20%;
+}
+
+
+
+
+
+
+
+.border_top{
+    border-top: 1px solid;
+}
+.border_bottom{
+    border-bottom: 1px solid;
+}
+
+.input_none_outline{
+    border: none;
+    outline: none;
+}
+
+
+.display_none{
+    display: none;
+}
+.display_block{
+    display: inline-block;
+}
+
+
+.info_title > input:active {
+    color: #FFF;
+    background-color: #CD9D67;
+}
+.info_btn > input:active {
+    color: #FFF;
+    background-color: #CD9D67;
+}
+.info_title > #signout_btn:hover {
+    color: #FFF;
+    background-color: #CD9D67;
+}

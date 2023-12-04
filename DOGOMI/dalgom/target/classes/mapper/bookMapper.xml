@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bitstudy.app.dao.bookMapper">
+<!--서영-->
+
+    <!--  훈련 정보& 훈련소 정보(tcMyPage) -->
+    <select id="book_joinUserTe" parameterType="map" resultType="BookUserTeDto">
+        select x.*, y.user_name, y.user_call, z.te_name, z.te_in, z.te_out
+            from book x
+                left join user_info y
+                    on x.user_no = y.user_no
+                left join te_info z
+                    on x.te_no = z.te_no
+            where x.tc_no = #{tc_no}
+        order by b_no desc
+        limit #{offset}, #{pageSize}
+    </select>
+    
+    <!--  훈련 정보 & 훈련소 정보(userMyPage)  -->
+    <select id="book_joinUserTeUser" parameterType="map" resultType="BookUserTeUserDto">
+        select x.*, y.tc_name, y.tc_call, z.te_name, z.te_in, z.te_out
+            from book x
+                left join tc_info y
+                    on x.tc_no = y.tc_no
+                left join te_info z
+                    on x.te_no = z.te_no
+            where x.user_no = #{user_no}
+        order by b_no desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!-- 훈련 정보 & 훈련소 정보 개수(tc) -->
+    <select id="book_joinCnt" parameterType="int" resultType="int">
+        select count(*)
+        from book
+        where tc_no = #{tc_no}
+    </select>
+
+    <!-- 훈련 정보 & 훈련소 정보 개수(tc) -->
+    <select id="book_joinCntUser" parameterType="int" resultType="int">
+        select count(*)
+        from book
+        where user_no = #{user_no}
+    </select>
+
+    <!--  훈련소 훈련 예약 들어온 정보 불러오기  -->
+    <select id="select_book_list" parameterType="int" resultType="BookDto">
+        select * from book
+        where tc_no = #{tc_no}
+        order by b_no desc
+        <!--limit #{offset}, #{pageSize}-->
+    </select>
+
+    <!--  훈련소 훈련 예약 들어온 정보 개수  -->
+    <select id="select_book_list_cnt" parameterType="int" resultType="int">
+        select count(*) from book
+        where tc_no = #{tc_no}
+    </select>
+
+    <!--  훈련소 훈련 예약 정보 변경해주기  -->
+    <update id="update_book_state" parameterType="map">
+        update book
+        set book_state = #{book_state}
+        where te_no = #{te_no} and b_no = #{b_no}
+    </update>
+
+    <!--  훈련 내용에 해당하는 dto가져오기(tc)  -->
+    <select id="select_bookjoin" parameterType="int" resultType="BookUserTeDto">
+        select x.*, y.user_name, y.user_call, z.te_name, z.te_in, z.te_out
+            from book x
+                left join user_info y
+                    on x.user_no = y.user_no
+                left join te_info z
+                    on x.te_no = z.te_no
+            where x.b_no = #{b_no}
+    </select>
+
+    <!--  훈련 내용에 해당하는 dto가져오기(user)  -->
+    <select id="select_bookjoinUser" parameterType="int" resultType="BookUserTeUserDto">
+        select x.*, y.tc_name, y.tc_call, z.te_name, z.te_in, z.te_out
+            from book x
+                left join tc_info y
+                    on x.tc_no = y.tc_no
+                left join te_info z
+                    on x.te_no = z.te_no
+            where x.b_no = #{b_no}
+    </select>
+
+
+<!--웅희-->
+    <!-- 11/27 웅 추가 훈련 정보 & 훈련소 정보(userMyPage) 인티저로  -->
+    <select id="book_joinUserTeUserByInt" parameterType="int" resultType="BookUserTeUserDto">
+        select x.*, y.tc_name, y.tc_call, z.te_name, z.te_in, z.te_out
+        from book x
+        left join tc_info y
+        on x.tc_no = y.tc_no
+        left join te_info z
+        on x.te_no = z.te_no
+        where x.user_no = #{user_no}
+        order by book_date desc
+    </select>
+
+    <!-- 게시물 등록 -->
+    <insert id="insert" parameterType="BookDto">
+        insert into book (user_no, book_date, tc_no, te_no, book_etc, book_state) values(#{user_no}, now(), #{tc_no}, #{te_no}, #{book_etc}, #{book_state})
+    </insert>
+
+    <!-- 게시물 전체 불러오기 -->
+    <select id="selectAll" resultType="BookDto">
+        select * from book order by b_no desc
+    </select>
+
+    <!-- 범위내로 불러오기 -->
+    <select id="selectPage" parameterType="map" resultType="BookDto">
+        select * from book order by  re_no desc limit #{offset}, #{pageSize}
+    </select>
+
+    <!-- 예약수정 -->
+    <update id="update" parameterType="BookDto">
+        update book
+        set book_date = now()
+        book_state = #{book_state},
+        where b_no = #{b_no} and user_no = #{user_no}
+    </update>
+
+    <!-- 예약가져오기 -->
+    <select id="select" parameterType="int" resultType="BookDto">
+        select * from book where te_no = #{te_no}
+    </select>
+
+
+    <!-- 예약 한적있는지 확인하는 매퍼 -->
+    <select id="count" parameterType="BookDto" resultType="int" >
+        select count(*) from book
+        where user_no = #{user_no} and te_no = #{te_no}
+    </select>
+
+
+    <!-- 전체 게시글 지우기 -->
+    <delete id="deleteAll">
+        delete from book
+    </delete>
+    <!-- 선택 게시글 지우기 -->
+    <delete id="delete" parameterType="map">
+        delete from book where b_no=#{b_no} and user_no = #{user_no}
+    </delete>
+
+    <!-- 관리자가 글 지우기 -->
+    <delete id="deleteForAdmin" parameterType="int">
+        delete from book where bno =#{bno}
+    </delete>
+
+    <!-- 검색 부분-->
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="BookDto">
+
+        select * from book
+        where true
+        <choose>
+            <when test='option == "W"'>
+                and re_img like concat('%',#{keyword},'%')
+            </when>
+            <when test='option == "C"'>
+                and  re_content like concat('%',#{keyword},'%')
+            </when>
+        </choose>
+        order by re_no desc
+        limit #{offset}, #{pageSize}        </select>
+    <!--
+ -->
+    <select id="searchSelectCount" parameterType="SearchCondition" resultType="int">
+        select count(*) from book
+        where true
+
+        <choose>
+            <when test='option == "W"'>
+                and user_no like concat('%',#{keyword},'%')
+            </when>
+            <when test='option == "C"'>
+                and  re_content like concat('%',#{keyword},'%')
+            </when>
+        </choose>
+
+    </select>
+
+</mapper>
+
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+        <!-- 별칭 정하는곳: 앞으로 BoardDto 라고 하면 com.bitstudy.app.domain.Ex02_BoardDto 로 알아들음 -->
+
+        <typeAlias alias="BookDto" type="com.bitstudy.app.domain.BookDto" />
+        <typeAlias alias="CommentDto" type="com.bitstudy.app.domain.CommentDto" />
+        <typeAlias alias="CommunityDto" type="com.bitstudy.app.domain.CommunityDto" />
+        <typeAlias alias="CsDto" type="com.bitstudy.app.domain.CsDto" />
+        <typeAlias alias="EventDto" type="com.bitstudy.app.domain.EventDto" />
+        <typeAlias alias="JjimDto" type="com.bitstudy.app.domain.JjimDto" />
+        <typeAlias alias="JjimTeDto" type="com.bitstudy.app.domain.JjimTeDto" />
+        <typeAlias alias="NoticeDto" type="com.bitstudy.app.domain.NoticeDto" />
+        <typeAlias alias="PageHandler" type="com.bitstudy.app.domain.PageHandler" />
+        <typeAlias alias="PetDto" type="com.bitstudy.app.domain.PetDto" />
+        <typeAlias alias="ReviewDto" type="com.bitstudy.app.domain.ReviewDto" />
+        <typeAlias alias="SearchCondition" type="com.bitstudy.app.domain.SearchCondition" />
+        <typeAlias alias="SearchDto" type="com.bitstudy.app.domain.SearchDto" />
+        <typeAlias alias="TcDto" type="com.bitstudy.app.domain.TcDto" />
+        <typeAlias alias="TcTeDto" type="com.bitstudy.app.domain.TcTeDto" />
+        <typeAlias alias="BookUserTeDto" type="com.bitstudy.app.domain.BookUserTeDto"/>
+        <typeAlias alias="BookUserTeUserDto" type="com.bitstudy.app.domain.BookUserTeUserDto"/>
+        <typeAlias alias="TeDto" type="com.bitstudy.app.domain.TeDto" />
+        <typeAlias alias="UserDto" type="com.bitstudy.app.domain.UserDto" />
+
+    </typeAliases>
+</configuration>

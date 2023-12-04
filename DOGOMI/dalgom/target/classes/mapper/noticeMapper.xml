@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bitstudy.app.dao.noticeMapper">
+
+<!--    notice_state가 1인(현재 보여줘야될 공지) 공지사항의 정보를 모두 가져오는 쿼리문-->
+    <select id="selectNoticeList" parameterType="int" resultType="NoticeDto">
+        select *
+        from notice
+        where nt_state=#{nt_state}
+        order by nt_date desc
+    </select>
+
+    <select id="selectNoticeInfo" parameterType="int" resultType="String" >
+        select nt_content
+        from notice
+        where nt_no=#{nt_no}
+    </select>
+
+<!--    <select id="selectNtState" parameterType="int" resultType="int">-->
+<!--        select nt_state-->
+<!--        from notice-->
+<!--        where nt_no=#{nt_no}-->
+<!--    </select>-->
+
+</mapper>

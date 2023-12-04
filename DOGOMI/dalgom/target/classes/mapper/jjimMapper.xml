@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bitstudy.app.dao.jjimMapper">
+    <!-- 찜 개수(유저당 usermypage) -->
+    <select id="jjimUserCnt" parameterType="int" resultType="int">
+        select count(*)
+        from jjim
+        where user_no = #{user_no}
+    </select>
+
+    <!-- 찜 등록 -->
+    <insert id="insert" parameterType="JjimDto">
+        insert into jjim (te_no, user_no) values(#{te_no}, #{user_no})
+    </insert>
+
+    <!-- 선택 게시글 지우기 -->
+    <delete id="delete" parameterType="JjimDto">
+        delete from jjim
+        where te_no = #{te_no} and user_no= #{user_no}
+    </delete>
+    <select id="jList" parameterType="int" resultType="JjimDto">
+        select * from jjim
+        where user_no = #{user_no}
+    </select>
+
+    <select id="jjimcount" parameterType="JjimDto" resultType="int">
+        select count(*) from jjim
+        where te_no = #{te_no} and user_no= #{user_no}
+    </select>
+
+    <!--  jjim join te-->
+    <select id="jjim_join_user" parameterType="map" resultType="JjimTeDto">
+        select x.*, y.tc_no, y.te_name, y.te_in, y.te_out, y.te_petsize, y.te_cost, z.tc_name
+            from jjim x
+                left join te_info y
+                    on x.te_no = y.te_no
+                left join tc_info z
+                    on y.tc_no = z.tc_no
+            where x.user_no = #{user_no}
+        order by jjim_no desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!--  jjimList중 하나만  -->
+    <select id="jjim_join_user_one" parameterType="map" resultType="JjimTeDto">
+        select x.*, y.tc_no, y.te_name, y.te_in, y.te_out, y.te_petsize, y.te_cost, z.tc_name
+            from jjim x
+                left join te_info y
+                    on x.te_no = y.te_no
+                left join tc_info z
+                    on y.tc_no = z.tc_no
+            where x.jjim_no = #{jjim_no}
+    </select>
+</mapper>
+
+

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bitstudy.app.dao.tcMapper">
+    <!-- 11/28 웅 추가 모든훈련소 이름, 번호만 가져오기 -->
+    <select id="loadListAll" resultType="TcDto">
+        select tc_no, tc_name from tc_info
+    </select>
+
+    <!--  훈련소 정보 가져오기  -->
+    <select id="select_tc_info" parameterType="int" resultType="TcDto">
+        select * from tc_info where tc_no = #{tc_no}
+    </select>
+
+    <!-- 훈련소 정보 tc_id로 가져오기  -->
+    <select id="select_tc_info_ID" parameterType="String" resultType="TcDto">
+        select * from tc_info where tc_name = #{tc_name}
+    </select>
+
+    <!--  훈련소 정보 수정  -->
+    <update id="update_tc_info" parameterType="map">
+        update tc_info
+        set tc_pw = #{tc_pw},
+            <if test="tc_img!=null">
+                tc_img = #{tc_img},
+            </if>
+            tc_name = #{tc_name},
+            tc_call = #{tc_call},
+            tc_email = #{tc_email},
+            tc_main_ad = #{tc_main_ad},
+            tc_sub_ad = #{tc_sub_ad}
+        where tc_no = #{tc_no} and tc_id = #{tc_id}
+    </update>
+
+    <!--  훈련소 회원 탈퇴  -->
+    <delete id="tc_drop" parameterType="int">
+        delete from tc_info
+        where tc_no = #{tc_no}
+    </delete>
+
+    <select id="selectTcList" parameterType="SearchDto" resultType="TcDto">
+
+        select distinct TC.*
+        from (select *
+        from tc_info
+        where tc_confirm = #{tc_confirm}
+
+        <choose>
+            <when test='addressKeyword1==null and addressKeyword2==null and addressKeyword3==null and addressKeyword4==null and addressKeyword5==null and addressKeyword6==null and addressKeyword7==null and addressKeyword8==null and addressKeyword9==null and addressKeyword10==null and addressKeyword11==null and addressKeyword12==null and addressKeyword13==null and addressKeyword14==null and addressKeyword15==null and addressKeyword16==null and addressKeyword17==null'>
+
+            </when>
+            <otherwise>
+                and ( tc_main_ad like concat(#{addressKeyword1},'%') or tc_main_ad like concat(#{addressKeyword2},'%') or tc_main_ad like concat(#{addressKeyword3},'%') or tc_main_ad like concat(#{addressKeyword4},'%') or tc_main_ad like concat(#{addressKeyword5},'%') or tc_main_ad like concat(#{addressKeyword6},'%') or tc_main_ad like concat(#{addressKeyword7},'%') or tc_main_ad like concat(#{addressKeyword8},'%') or tc_main_ad like concat(#{addressKeyword9},'%') or tc_main_ad like concat(#{addressKeyword10},'%') or tc_main_ad like concat(#{addressKeyword11},'%') or tc_main_ad like concat(#{addressKeyword12},'%') or tc_main_ad like concat(#{addressKeyword13},'%') or tc_main_ad like concat(#{addressKeyword14},'%') or tc_main_ad like concat(#{addressKeyword15},'%') or tc_main_ad like concat(#{addressKeyword16},'%') or tc_main_ad like concat(#{addressKeyword17},'%') )
+            </otherwise>
+        </choose>
+
+        ) TC
+
+        inner join (select *
+        from te_info
+        where true
+
+        <choose>
+            <when test='addressKeyword21==null and addressKeyword22==null and addressKeyword23==null and addressKeyword24==null and addressKeyword25==null and addressKeyword26==null'>
+
+            </when>
+            <otherwise>
+                and ( te_name like concat('%',#{addressKeyword21},'%') or te_name like concat('%',#{addressKeyword22},'%') or te_name like concat('%',#{addressKeyword23},'%') or te_name like concat('%',#{addressKeyword24},'%') or te_name like concat('%',#{addressKeyword25},'%') or te_name like concat('%',#{addressKeyword26},'%')  )
+            </otherwise>
+        </choose>
+
+        <choose>
+            <when test='addressKeyword31==null and addressKeyword32==null and addressKeyword33==null'>
+
+            </when>
+            <otherwise>
+                and ( te_petsize like concat('%',#{addressKeyword31},'%') or te_petsize like concat('%',#{addressKeyword32},'%') or te_petsize like concat('%',#{addressKeyword33},'%')  )
+            </otherwise>
+        </choose>
+
+        ) TMP
+        on TC.tc_no = TMP.tc_no
+
+        order by TC.tc_main_ad
+        limit #{offset}, #{pageSize}
+
+    </select>
+
+    <select id="selectTcListCount" parameterType="SearchDto" resultType="int">
+
+        select count(distinct Tc.tc_no)
+        from (select *
+        from tc_info
+        where tc_confirm = #{tc_confirm}
+
+        <choose>
+            <when test='addressKeyword1==null and addressKeyword2==null and addressKeyword3==null and addressKeyword4==null and addressKeyword5==null and addressKeyword6==null and addressKeyword7==null and addressKeyword8==null and addressKeyword9==null and addressKeyword10==null and addressKeyword11==null and addressKeyword12==null and addressKeyword13==null and addressKeyword14==null and addressKeyword15==null and addressKeyword16==null and addressKeyword17==null'>
+
+            </when>
+            <otherwise>
+                and ( tc_main_ad like concat(#{addressKeyword1},'%') or tc_main_ad like concat(#{addressKeyword2},'%') or tc_main_ad like concat(#{addressKeyword3},'%') or tc_main_ad like concat(#{addressKeyword4},'%') or tc_main_ad like concat(#{addressKeyword5},'%') or tc_main_ad like concat(#{addressKeyword6},'%') or tc_main_ad like concat(#{addressKeyword7},'%') or tc_main_ad like concat(#{addressKeyword8},'%') or tc_main_ad like concat(#{addressKeyword9},'%') or tc_main_ad like concat(#{addressKeyword10},'%') or tc_main_ad like concat(#{addressKeyword11},'%') or tc_main_ad like concat(#{addressKeyword12},'%') or tc_main_ad like concat(#{addressKeyword13},'%') or tc_main_ad like concat(#{addressKeyword14},'%') or tc_main_ad like concat(#{addressKeyword15},'%') or tc_main_ad like concat(#{addressKeyword16},'%') or tc_main_ad like concat(#{addressKeyword17},'%') )
+            </otherwise>
+        </choose>
+
+        ) TC
+
+        inner join (select *
+        from te_info
+        where true
+
+        <choose>
+            <when test='addressKeyword21==null and addressKeyword22==null and addressKeyword23==null and addressKeyword24==null and addressKeyword25==null and addressKeyword26==null'>
+
+            </when>
+            <otherwise>
+                and ( te_name like concat('%',#{addressKeyword21},'%') or te_name like concat('%',#{addressKeyword22},'%') or te_name like concat('%',#{addressKeyword23},'%') or te_name like concat('%',#{addressKeyword24},'%') or te_name like concat('%',#{addressKeyword25},'%') or te_name like concat('%',#{addressKeyword26},'%')  )
+            </otherwise>
+        </choose>
+
+        <choose>
+            <when test='addressKeyword31==null and addressKeyword32==null and addressKeyword33==null'>
+
+            </when>
+            <otherwise>
+                and ( te_petsize like concat('%',#{addressKeyword31},'%') or te_petsize like concat('%',#{addressKeyword32},'%') or te_petsize like concat('%',#{addressKeyword33},'%')  )
+            </otherwise>
+        </choose>
+
+        ) TMP
+        on TC.tc_no = TMP.tc_no
+    </select>
+
+    <!--TcDto가져오기-->
+    <select id="tcSelect" parameterType="int" resultType="TcDto">
+        select *
+        from tc_info
+        where tc_no = #{tc_no}
+    </select>
+
+
+    <!--    이 쿼리문이 왼쪽의 지역정보가 체크가 되든 안되는 상관없이 훈련소 정보가 출력되는데 리미트를 걸어 10개씩만 가져오게 되는 구문이다.-->
+    <select id="selectTcSearchPage" parameterType="SearchDto" resultType="TcDto">
+
+        select *
+        from tc_info
+        where true
+        <choose>
+            <when test='addressKeyword1==null and addressKeyword2==null and addressKeyword3==null and addressKeyword4==null and addressKeyword5==null and addressKeyword6==null and addressKeyword7==null and addressKeyword8==null and addressKeyword9==null and addressKeyword10==null'>
+
+            </when>
+            <otherwise>
+                and ( tc_main_ad like concat(#{addressKeyword1},'%') or tc_main_ad like concat(#{addressKeyword2},'%') or tc_main_ad like concat(#{addressKeyword3},'%') or tc_main_ad like concat(#{addressKeyword4},'%') or tc_main_ad like concat(#{addressKeyword5},'%') or tc_main_ad like concat(#{addressKeyword6},'%') or tc_main_ad like concat(#{addressKeyword7},'%') or tc_main_ad like concat(#{addressKeyword8},'%') or tc_main_ad like concat(#{addressKeyword9},'%') or tc_main_ad like concat(#{addressKeyword10},'%') )
+            </otherwise>
+        </choose>
+
+        order by tc_main_ad
+        limit #{offset}, #{pageSize}
+
+    </select>
+
+
+    <!--    이 쿼리문은 페이지의 개수를 결정할 때 검열된 정보던 아니던 총 훈련소의 개수를 뽑아주는 구문이다.-->
+    <select id="selectTcSearchPageCount" parameterType="SearchDto" resultType="int">
+        select count(*)
+        from tc_info
+        where true
+
+        <choose>
+            <when test='addressKeyword1==null and addressKeyword2==null and addressKeyword3==null and addressKeyword4==null and addressKeyword5==null and addressKeyword6==null and addressKeyword7==null and addressKeyword8==null and addressKeyword9==null and addressKeyword10==null'>
+
+            </when>
+            <otherwise>
+                and ( tc_main_ad like concat(#{addressKeyword1},'%') or tc_main_ad like concat(#{addressKeyword2},'%') or tc_main_ad like concat(#{addressKeyword3},'%') or tc_main_ad like concat(#{addressKeyword4},'%') or tc_main_ad like concat(#{addressKeyword5},'%') or tc_main_ad like concat(#{addressKeyword6},'%') or tc_main_ad like concat(#{addressKeyword7},'%') or tc_main_ad like concat(#{addressKeyword8},'%') or tc_main_ad like concat(#{addressKeyword9},'%') or tc_main_ad like concat(#{addressKeyword10},'%') )
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <!--  ************* 회원 가입 ******************  -->
+<!--      훈련소 회원가입 데이터 중복 검사-->
+        <select id="countSltTc" parameterType="String" resultType="int">
+            select count(tc_id) from tc_info where tc_id=#{tc_id}
+        </select>
+
+    <!-- 훈련소 회원가입 데이터 입력   -->
+    <insert id="insertTc" parameterType="TcDto">
+        insert into tc_info(tc_id,tc_pw,tc_name,tc_call,tc_email,tc_main_ad,tc_sub_ad,tc_joindate,tc_leader,tc_businesse_no)
+        values (#{tc_id}, #{tc_pw}, #{tc_name}, #{tc_call}, #{tc_email}, #{tc_main_ad}, #{tc_sub_ad}, now(), #{tc_leader}, #{tc_businesse_no})
+    </insert>
+    <!--    , #{tc_confirm}-->
+    <!--    , #{tc_img}-->
+
+    <!--  *************** 로그인 *******************  -->
+    <!--  훈련소 로그인 데이터 불러오기  -->
+    <select id="sltTc" parameterType="map" resultType="TcDto">
+        select * from tc_info where tc_id=#{tc_id} and tc_pw=#{tc_pw}
+    </select>
+
+
+    <!--  id로 tc 정보 가져와  -->
+    <select id="select_tc_id" parameterType="String" resultType="TcDto">
+        select * from tc_info where tc_id = #{tc_id}
+    </select>
+
+</mapper>
+
+

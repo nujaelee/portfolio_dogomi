@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bitstudy.app.dao.teMapper">
+    <!--  훈련 정보 하나만 가져오기  -->
+    <select id="select_te" parameterType="int" resultType="TeDto">
+        select * from te_info
+        where te_no = #{te_no}
+    </select>
+
+    <!--  훈련 정보 리스트  -->
+    <select id="select_te_list" parameterType="int" resultType="TeDto">
+        select * from te_info
+        where tc_no = #{tc_no}
+    </select>
+
+    <!-- 훈련 정보 1개 추가 -->
+    <insert id="input_te" parameterType="TeDto">
+        insert into te_info (tc_no, te_img, te_name, te_in, te_out, te_petsize, te_cost)
+        values (#{tc_no}, #{te_img}, #{te_name}, #{te_in}, #{te_out}, #{te_petsize}, #{te_cost})
+    </insert>
+
+    <!--  훈련 정보 수정  -->
+    <update id="update_te" parameterType="map">
+        update te_info
+        set <if test="te_img!=null">
+                te_img = #{te_img},
+            </if>
+            te_name = #{te_name},
+            te_in = #{te_in},
+            te_out = #{te_out},
+            te_petsize = #{te_petsize},
+            te_cost = #{te_cost}
+        where tc_no = #{tc_no} and te_no = #{te_no}
+    </update>
+
+    <!--  훈련 정보 전체 삭제  -->
+    <delete id="te_drop_all" parameterType="int">
+        delete from te_info
+        where tc_no = #{tc_no}
+    </delete>
+
+    <!--  훈련 정보 하나만 삭제  -->
+    <delete id="te_drop" parameterType="int">
+        delete from te_info
+        where te_no = #{te_no}
+    </delete>
+
+
+
+
+
+
+
+
+<!--  이웅희   -->
+    <!-- 훈련 가져오기 -->
+    <select id="select" parameterType="int" resultType="TeDto">
+        select * from te_info where tc_no = #{tc_no}
+    </select>
+    <!-- 검색 조건에 맞게 훈련 가져오기 -->
+    <select id="selectTe" resultType="TeDto">
+        select * from te_info
+    </select>
+
+    <select id="selectjoin" parameterType="SearchDto" resultType="TcTeDto">
+        select * from tc_info TC
+        inner join te_info TE
+        on TC.tc_no=TE.tc_no
+        order by TC.tc_no
+
+    </select>
+
+
+    <!--    이 쿼리문은 페이지의 개수를 결정할 때 검열된 정보던 아니던 총 훈련소의 개수를 뽑아주는 구문이다.-->
+    <select id="selectTcSearchPageCount" parameterType="SearchDto" resultType="int">
+        select count(*)
+        from tc_info
+        where true
+
+        <choose>
+            <when test='addressKeyword1==null and addressKeyword2==null and addressKeyword3==null and addressKeyword4==null and addressKeyword5==null and addressKeyword6==null and addressKeyword7==null and addressKeyword8==null and addressKeyword9==null and addressKeyword10==null'>
+
+            </when>
+            <otherwise>
+                and ( tc_main_ad like concat(#{addressKeyword1},'%') or tc_main_ad like concat(#{addressKeyword2},'%') or tc_main_ad like concat(#{addressKeyword3},'%') or tc_main_ad like concat(#{addressKeyword4},'%') or tc_main_ad like concat(#{addressKeyword5},'%') or tc_main_ad like concat(#{addressKeyword6},'%') or tc_main_ad like concat(#{addressKeyword7},'%') or tc_main_ad like concat(#{addressKeyword8},'%') or tc_main_ad like concat(#{addressKeyword9},'%') or tc_main_ad like concat(#{addressKeyword10},'%') )
+            </otherwise>
+        </choose>
+    </select>
+</mapper>
+
+

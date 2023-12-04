@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bitstudy.app.dao.reviewMapper">
+    <!--  유저정보가 일치하는 리뷰만 불러오기  -->
+    <select id="select_user_review" parameterType="map" resultType="ReviewDto">
+        select * from review
+        where user_no = #{user_no}
+        order by re_no desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!--  유저 정보가 일치하는 리뷰 개수 -->
+    <select id="select_user_reCnt" parameterType="int" resultType="int">
+        select count(*) from review
+        where user_no = #{user_no}
+    </select>
+
+    <!--  훈련소정보가 일치하는 리뷰만 불러오기  -->
+    <select id="select_tc_review" parameterType="map" resultType="ReviewDto">
+        select * from review
+        where tc_no = #{tc_no}
+        order by re_no desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <!--  훈련소정보가 일치하는 리뷰 개수  -->
+    <select id="select_tc_reCnt" parameterType="int" resultType="int">
+        select count(*) from review
+        where tc_no = #{tc_no}
+    </select>
+
+
+
+    <!-- 게시물 등록 -->
+    <insert id="insert" parameterType="ReviewDto">
+        insert into review (tc_no, user_no, user_id, re_img, re_content, re_update) values(#{tc_no}, #{user_no},  #{user_id}, #{re_img}, #{re_content}, now())
+    </insert>
+
+    <!-- 게시물 전체 불러오기 -->
+    <select id="selectAll" resultType="ReviewDto">
+        select * from review order by  re_no desc
+    </select>
+
+    <!-- 범위내로 불러오기 -->
+    <select id="selectPage" parameterType="map" resultType="ReviewDto">
+        select * from review order by  re_no desc limit #{offset}, #{pageSize}
+    </select>
+
+    <!-- 글수정 -->
+    <update id="update" parameterType="map">
+        update review
+        set re_img=#{re_img},
+        re_content=#{re_content},
+        re_update = now()
+        where re_no = #{re_no} and user_no = #{user_no}
+
+    </update>
+    <update id="update2" parameterType="ReviewDto">
+        update review
+        set
+        <if test="re_img!=null">
+            re_img = #{re_img},
+        </if>
+        re_content=#{re_content},
+        re_update = now()
+        where re_no = #{re_no} and user_no = #{user_no}
+    </update>
+
+    <!-- 게시글가져오기 -->
+    <select id="select" parameterType="int" resultType="ReviewDto">
+        select * from review where re_no = #{re_no}
+    </select>
+
+    <!-- 전체 게시글 수 -->
+    <select id="count" resultType="int">
+        select count(*) from review
+    </select>
+
+    <!-- 전체 게시글 지우기 -->
+    <delete id="deleteAll">
+        delete from review
+    </delete>
+    <!-- 선택 게시글 지우기 -->
+    <delete id="delete" parameterType="map">
+        delete from review where re_no=#{re_no} and user_id = #{user_id}
+    </delete>
+
+    <!-- 관리자가 글 지우기 -->
+    <delete id="deleteForAdmin" parameterType="int">
+        delete from review where bno =#{bno}
+    </delete>
+
+    <!-- 검색 부분-->
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="ReviewDto">
+        select * from review
+        where true
+        <choose>
+            <when test='option == "W"'>
+                and re_img like concat('%',#{keyword},'%')
+            </when>
+            <when test='option == "C"'>
+                and  re_content like concat('%',#{keyword},'%')
+            </when>
+        </choose>
+        order by re_no desc
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchSelectCount" parameterType="SearchCondition" resultType="int">
+        select count(*) from review
+        where true
+        <choose>
+            <when test='option == "W"'>
+                and user_no like concat('%',#{keyword},'%')
+            </when>
+            <when test='option == "C"'>
+                and  re_content like concat('%',#{keyword},'%')
+            </when>
+        </choose>
+    </select>
+
+</mapper>
+
+

@@ -1,0 +1,134 @@
+@charset "UTF-8";
+.container {
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    /* background-color: peru; */
+    padding: 50px;
+    box-sizing: border-box;
+}
+.write_box {
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 3px solid #EDC886;
+    /* background-color: #CD9D6726; */
+    background-color: #FAF2E1;
+}
+input{
+    outline: none;
+}
+
+.textbox{
+    width: 100%;
+    height: 300px;
+    box-sizing: border-box;
+    padding: 20px 0;
+}
+#re_content{
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    resize: none;
+    outline: none;
+    border-radius: 5px;
+}
+.file_box{
+    margin: 20px 0;
+}
+.file_box > select {
+    width: 15%;
+}
+#tc_name {
+    font-size: 17px;
+}
+.img_box {
+    height: 100%;
+    margin: 30px 0;
+    position: relative;
+}
+.img_box > img {
+    height: 100%;
+}
+.img_uploader {
+    margin-top: 20px;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    gap: 30px;
+    align-items: flex-end;
+}
+.img_uploader > #fileUploader {
+    cursor: pointer;
+}
+.img_uploader > input[type=file]::file-selector-button {
+    /* width: 80px; */
+    width: auto;
+    padding: 0 10px;
+    height: 40px;
+    margin-right: 10px;
+    background: #fff;
+    /* border: 1px solid rgb(77,77,77);
+    border-radius: 10px; */
+    border: 1px solid #EDC886;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+.input_box button{
+    height: 40px;
+    width: 100px;
+    padding: 0 15px;
+    /* border: none; */
+    border-radius: 5px;
+    cursor: pointer;
+    background: #FAF2E1;
+    border: 2px solid #CD9D67;
+}
+
+#rv_com{
+    height: 40px;
+    width: 70%;
+    padding: 0 15px;
+    border: none;
+    border-radius: 5px;
+}
+#rv_reg{
+    height: 40px;
+    width: 100px;
+    padding: 0 15px;
+    /* border: none; */
+    border-radius: 5px;
+    cursor: pointer;
+    background: #FAF2E1;
+    border: 2px solid #CD9D67;
+}
+
+button:hover, button:active {
+    color: #FFF;
+    background-color: #CD9D67;
+}
+#rv_reg:hover, #rv_reg.active {
+    color: #FFF;
+    background-color: #CD9D67;
+}
+
+.file_box > input[type=file]::file-selector-button, .file_box > select {
+    /* width: 80px; */
+    width: auto;
+    padding: 0 10px;
+    height: 40px;
+    margin-right: 10px;
+    background: #fff;
+    /* border: 1px solid rgb(77,77,77);
+    border-radius: 10px; */
+    border: 1px solid #EDC886;
+    border-radius: 5px;
+    cursor: pointer;
+}
