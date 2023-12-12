@@ -86,7 +86,7 @@
 
 ###### - 훈련소화면 
 
-![trainCenter](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/02166ca6-67d6-4982-90e0-505387f7117b)
+![trainCenter](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/40f8786a-bca6-44a8-b927-5e48f9778ab4)
 1. 상단에는 훈련소의 정보를 보여주고 하단은 해당 훈련소에서 제공하는 훈련이 나열됩니다.
 2. 견주가 이미 찜한 훈련이라면 검정색 발바닥으로 나타납니다.
 3. 추가로 찜을 하게 되면 발바닥이 검정색으로 바뀌고 찜을 취소하면 하얀색 발바닥으로 바뀝니다.
@@ -97,14 +97,13 @@
 
 ###### - 게시판(후기 게시판)
 
-
-![review](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/5bb003fb-525b-4271-948e-8dc61a716b4e)
+![review](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/1f0d9c35-851c-4412-b7c1-e193f2f622dc)
 1. 키워드가 포함된 내용과 작성자를 선택해 입력한 검색어로 검색할 수 있습니다.
 2. 후기에는 예약한 훈련소와 후기 게시글 내용, 작성자 아이디가 포함되어 있고, 이미지도 포함할 수 있습니다.
 3. 글쓰기 버튼을 누르면 글쓰기 화면으로 이동하고, 비 로그인 인 경우 로그인 폼으로 이동합니다.
 4. 가장 상단의 게시물처럼 내가 작성한 리뷰라면 수정과 삭제 버튼이 보입니다.
 
-![reviewWrite](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/c7ae24cc-fc96-4bd4-9264-25c1c0a8538d)
+![reviewWrite](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/a0c32ca5-8b89-4fc0-9720-1e175b7506d5)
 1. 견주가 예약한 훈련소 목록을 불러와 후기를 작성하고 싶은 훈련소를 고를 수 있습니다.
    (훈련을 예약한 적이 없다면 글쓰기가 불가능합니다.)
 2. 1.에서 선택한 훈련소와 사진, 내용을 작성하여 등록할 수 있습니다.
@@ -114,13 +113,13 @@
 
 
 ###### - 게시판 글목록(커뮤니티 게시판)
-![comuList](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/2ddd50b1-93e2-416c-9576-e07287538c89)
+![comuList](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/bb23c612-12a0-4027-9440-88e2f85e4609)
 1. 후기 페이지와 마찬가지로 키워드가 포함된 내용과 작성자를 선택해 입력한 검색어로 검색할 수 있습니다.
 2. 후기 리스트와는 다른 점은 게시물을 보려면 게시물을 클릭해 이동해야 합니다.
 <br>
 
 ##### - 게시판 글 페이지(커뮤니티 게시판)
-![comuWrite](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/0582e4be-386d-49f2-9830-1c8170c80fe2)
+![comuWrite](https://github.com/nujaelee/portfolio_dogomi/assets/146051658/b9f08d8b-3785-45cc-a0ad-7884ab4e4e98)
 1. 게시글 작성)
 - 제목과 내용을 포함하여야 하고 이미지파일을 등록할 수 있습니다.
 2. 게시글 조회)
